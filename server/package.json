@@ -1,0 +1,40 @@
+{
+  "name": "fab_web_app",
+  "version": "1.0.0",
+  "description": "Real time web application.",
+  "author": "Vitalii Medvediev <vetalmedvedev@gmail.com>",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql-yoga": "^1.18.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vmedvedev/fab-web-app.git"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "js,json,ts",
+    "ignore": [
+      "*.test.js",
+      "*.test.ts"
+    ]
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}

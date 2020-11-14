@@ -1,0 +1,15 @@
+body {
+    min-width: 340px;
+    background: url("https://static.wixstatic.com/media/2412e7_ee635ef292a74b62a70a5ba7336309bb~mv2_d_4096_2731_s_4_2.jpg/v1/fill/w_2434,h_1622,al_c,q_90,usm_0.66_1.00_0.01/2412e7_ee635ef292a74b62a70a5ba7336309bb~mv2_d_4096_2731_s_4_2.jpg") center no-repeat;
+}
+
+.container {
+    min-width: 300px;
+}
+
+.form-container {
+    min-height: 40vh;
+    margin-top: 20px;
+    padding: 0 20px;
+    background-color: #f5f5f5b0 !important;
+}

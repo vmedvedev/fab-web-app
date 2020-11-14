@@ -1,0 +1,16 @@
+type Query {
+  command: [String]
+}
+
+type Mutation {
+  command(name: AllowedCommand!, message: String!): String!
+}
+
+type Subscription {
+  newMessage: String!
+}
+
+enum AllowedCommand {
+    FLY
+    LAND
+}

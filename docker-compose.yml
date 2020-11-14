@@ -1,0 +1,36 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - 4000:4000
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - ./server/package.json:/usr/src/app/package.json
+      - ./server/package-lock.json:/usr/src/app/package-lock.json
+      - ./server/src:/usr/src/app/src
+  
+  client:
+    build:
+      context: ./client
+    depends_on:
+      - server
+    ports:
+      - 3000:80
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REACT_APP_API_URI=${REACT_APP_API_URI}
+      - REACT_APP_SUB_URI=${REACT_APP_SUB_URI}
+
+  admin:
+    build:
+      context: ./admin
+    depends_on:
+      - server
+    ports:
+      - 5000:80
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REACT_APP_API_URI=${REACT_APP_API_URI}
