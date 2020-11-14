@@ -28,7 +28,7 @@ const App = () => {
       <Box>
         <NavBar/>
         <Container maxWidth="md" className="container">
-          <CommandForm client={client}/>
+          <CommandForm/>
         </Container>
       </Box>
     </ApolloProvider>

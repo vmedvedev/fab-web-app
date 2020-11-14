@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CommandForm = ({client}) => {
+const CommandForm = () => {
     const classes = useStyles();
     const [message, setMessage] = React.useState('');
     const [name, setName] = React.useState('');
