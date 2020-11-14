@@ -20,6 +20,22 @@ Real time web application.
 #### API server with GraphQL:
 [https://fab-api.herokuapp.com](https://fab-api.herokuapp.com)
 
+## GraphQL query examples
+***
+### Fly command
+```
+mutation{
+  command(name: FLY, message: "hello world")
+}
+```
+
+### Land command
+```
+mutation{
+  command(name: LAND, message: "hello world")
+}
+```
+
 ## Instruction for local setup
 ***
 
