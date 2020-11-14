@@ -23,6 +23,7 @@ services:
       - NODE_ENV=${NODE_ENV}
       - REACT_APP_API_URI=${REACT_APP_API_URI}
       - REACT_APP_SUB_URI=${REACT_APP_SUB_URI}
+      - PORT=80
 
   admin:
     build:
@@ -32,5 +33,6 @@ services:
     ports:
       - 5000:80
     environment:
+      - PORT=80
       - NODE_ENV=${NODE_ENV}
       - REACT_APP_API_URI=${REACT_APP_API_URI}

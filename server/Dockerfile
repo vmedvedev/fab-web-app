@@ -18,5 +18,4 @@ RUN npm i -D cross-env
 # copy source code
 COPY . .
 
-EXPOSE 4000
 CMD [ "nodemon", "src/index.js" ]

@@ -4,6 +4,8 @@ const Mutation = require('./resolvers/Mutation');
 const Subscription = require('./resolvers/Subscription');
 const pubsub = new PubSub();
 
+const PORT = process.env.PORT || 4000;
+
 const resolvers = {
   Query,
   Mutation,
@@ -16,4 +18,4 @@ const server = new GraphQLServer({
   context: { pubsub },
 });
 
-server.start(() => console.log(`Server is running on http://localhost:4000`));
+server.start({ port: PORT}, () => console.log(`Server is running on http://localhost:${PORT}`));
