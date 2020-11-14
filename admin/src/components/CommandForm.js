@@ -39,24 +39,44 @@ const CommandForm = () => {
     const [message, setMessage] = React.useState('');
     const [name, setName] = React.useState('');
     const [showResponse, setShowResponse] = React.useState(false);
+    const [msgErr, setMsgErr] = React.useState(false);
+    const [cmdErr, setCmdErr] = React.useState(false);
     const [
         newCommand, 
         { data, loading: mutationLoading, error: mutationError }
     ] = useMutation(NEW_CMD);
 
     const handleMessageChange = (event) => {
-        setMessage(event.target.value);
+        let val = event.target.value; 
+        setMessage(val);
+
+        if (!val) {
+            setMsgErr(true);
+        } else {
+            setMsgErr(false);
+        }
     };
 
     const handleCommandChange = (event) => {
+        let val = event.target.value;
         setShowResponse(false);
-        setName(event.target.value);
+        setName(val);
+
+        if (!val) {
+            setCmdErr(true);
+        } else {
+            setCmdErr(false);
+        }
     };
     
     const handleSubmit = () => {
-        if (name) {
+        if (name && message) {
             setShowResponse(true);
             newCommand({ variables: { name, message } });
+        } else if (!message) {
+            setMsgErr(true);
+        } else if (!name) {
+            setCmdErr(true);
         }
     };
 
@@ -64,18 +84,22 @@ const CommandForm = () => {
         <Paper className="form-container" elevation={6} >
             <h1 className={classes.title}>Mission Control</h1>
             <form className={classes.form} noValidate autoComplete="off">
-                <TextField label="Message" variant="outlined" onChange={handleMessageChange} value={message}/>
+                <TextField 
+                    error={msgErr}
+                    helperText={ msgErr ? "Message is empty" : "" }
+                    label="Message" 
+                    variant="outlined" 
+                    onChange={handleMessageChange} 
+                    value={message}/>
                 <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel id="command-label">Command</InputLabel>
                     <Select
+                        error={cmdErr}
                         labelId="command-label"
                         value={name}
                         onChange={handleCommandChange}
                         label="Command"
                     >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
                         <MenuItem value="FLY">Fly</MenuItem>
                         <MenuItem value="LAND">Land</MenuItem>
                     </Select>
@@ -86,8 +110,8 @@ const CommandForm = () => {
             </form>
             <span className={classes.result}>
                 {mutationLoading ? 'Loading...' : 
-                mutationError ? 'Error: server is unavailable': 
-                data && showResponse ? `Response: ${data.command}`: ''}
+                  mutationError ? 'Error: server is unavailable': 
+                   data && showResponse ? `Response: ${data.command}`: ''}
             </span>
         </Paper>
     );
